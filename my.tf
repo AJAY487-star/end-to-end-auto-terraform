@@ -135,7 +135,7 @@ resource "aws_s3_bucket_object" "picture33" {
   depends_on   =  [ aws_s3_bucket.buckettera00011,  ]
   bucket       = "ajaybaket"
   key          = "friend.jpg"
-  source       = "C:\Pintu\PINTU\friend.jpg"
+  source       = "C:/Pintu/PINTU/friend.jpg"
   content_type = "image/jpg"
   acl          = "public-read"
 
