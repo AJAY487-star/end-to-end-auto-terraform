@@ -189,6 +189,21 @@ resource "aws_cloudfront_distribution" "cloudfront1" {
     }
 }
 
+connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    private_key = file("C:/Users/Ajay Kumar/Downloads/mykey11.pem")
+    host     = aws_instance.web.public_ip
+  }
+provisioner "remote-exec"{
+ 	inline = [
+	  	"sudo su <<END",
+  	  	"echo \"<img src='http://${aws_cloudfront_distribution.distribution.domain_name}/${aws_s3_bucket_object.object.key}' height='200' width='200'>\" >> /var/www/html/index.php",
+  		"END",
+ 		]
+	}
+}
+
 
 resource "null_resource" "null_chrome"  {
 depends_on = [
